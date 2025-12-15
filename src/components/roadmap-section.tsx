@@ -2,45 +2,8 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { Check, Circle, Clock, Rocket, Zap, TrendingUp } from "lucide-react"
-
-const phases = [
-  {
-    phase: "Phase 1",
-    title: "Foundation",
-    icon: Rocket,
-    items: [
-      "Full mall directory and interactive map",
-      "Tenant listing pages with promotions",
-      "Digital advertising placements",
-      "Admin dashboard for management",
-      "Basic marketplace layer",
-    ],
-  },
-  {
-    phase: "Phase 2",
-    title: "Expansion",
-    icon: Zap,
-    items: [
-      "On-platform payments integration",
-      "Pickup & delivery module",
-      "Tenant onboarding automation",
-      "User analytics",
-      "Kiosk network deployment",
-    ],
-  },
-  {
-    phase: "Phase 3 (optional services)",
-    title: "Scale",
-    icon: TrendingUp,
-    items: [
-      "AI-powered recommendations",
-      "Delivery fleet integration",
-      "Multi-mall platform expansion",
-      "Advanced Reporting suite",
-    ],
-  },
-]
+import { Check, Circle } from "lucide-react"
+import { roadmapContent } from "@/site-content"
 
 export function RoadmapSection() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -56,12 +19,12 @@ export function RoadmapSection() {
           transition={{ duration: 0.8 }}
           className="text-center max-w-3xl mx-auto mb-20"
         >
-          <span className="text-primary font-medium tracking-widest uppercase text-sm">Implementation Roadmap</span>
+          <span className="text-primary font-medium tracking-widest uppercase text-sm">{roadmapContent.sectionHeader.badge}</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-foreground mt-4 mb-6">
-            A Clear Path to Launch
+            {roadmapContent.sectionHeader.title}
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Structured phases designed for rapid deployment, measurable milestones, and continuous value delivery.
+            {roadmapContent.sectionHeader.description}
           </p>
         </motion.div>
 
@@ -71,7 +34,7 @@ export function RoadmapSection() {
           <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2 hidden lg:block" />
 
           <div className="space-y-12 lg:space-y-0">
-            {phases.map((phase, index) => (
+            {roadmapContent.phases.map((phase, index) => (
               <motion.div
                 key={phase.phase}
                 initial={{ opacity: 0, y: 40 }}

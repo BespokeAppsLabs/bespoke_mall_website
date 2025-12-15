@@ -2,39 +2,8 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { CheckCircle2, ArrowRight, Layers, Store, Wifi, DollarSign } from "lucide-react"
-
-const solutionFeatures = [
-  {
-    icon: Store,
-    title: "Digital Storefronts",
-    description: "Physical tenants extend their reach. Virtual tenants join without physical space.",
-  },
-  {
-    icon: Wifi,
-    title: "Connected Ecosystem",
-    description: "Seamless integration between physical experience and digital engagement.",
-  },
-  {
-    icon: DollarSign,
-    title: "Digital Rent Revenue",
-    description: "New income stream from businesses that operate in your digital space.",
-  },
-  {
-    icon: Layers,
-    title: "Scalable Platform",
-    description: "Grow infinitely without construction. Add tenants with zero physical constraints.",
-  },
-]
-
-const benefits = [
-  "New revenue without construction",
-  "Enhanced customer engagement",
-  "Future-proof operations",
-  "Competitive advantage",
-  "Tenant value enhancement",
-  "Data-driven decisions",
-]
+import { CheckCircle2, ArrowRight } from "lucide-react"
+import { solutionContent } from "@/site-content"
 
 export function SolutionSection() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -53,13 +22,12 @@ export function SolutionSection() {
           transition={{ duration: 0.8 }}
           className="text-center max-w-3xl mx-auto mb-20"
         >
-          <span className="text-primary font-medium tracking-widest uppercase text-sm">The Solution</span>
+          <span className="text-primary font-medium tracking-widest uppercase text-sm">{solutionContent.sectionHeader.badge}</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-foreground mt-4 mb-6 text-balance">
-            The Digital Tenant Ecosystem
+            {solutionContent.sectionHeader.title}
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            A unified platform that transforms your mall into a hybrid destination — where physical and digital tenants
-            coexist, collaborate, and generate revenue.
+            {solutionContent.sectionHeader.description}
           </p>
         </motion.div>
 
@@ -67,7 +35,7 @@ export function SolutionSection() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Feature Cards */}
           <div className="grid sm:grid-cols-2 gap-6">
-            {solutionFeatures.map((feature, index) => (
+            {solutionContent.features.map((feature, index) => (
               <motion.div
                 key={feature.title}
                 initial={{ opacity: 0, y: 30 }}
@@ -91,9 +59,9 @@ export function SolutionSection() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <div className="p-8 rounded-3xl bg-card border border-border">
-              <h3 className="text-2xl font-semibold text-foreground mb-6">What You Gain</h3>
+              <h3 className="text-2xl font-semibold text-foreground mb-6">{solutionContent.benefitsTitle}</h3>
               <div className="grid grid-cols-2 gap-4">
-                {benefits.map((benefit, index) => (
+                {solutionContent.benefits.map((benefit, index) => (
                   <motion.div
                     key={benefit}
                     initial={{ opacity: 0, x: 20 }}
@@ -112,7 +80,7 @@ export function SolutionSection() {
                   href="#platform"
                   className="inline-flex items-center gap-2 text-primary font-medium hover:gap-4 transition-all"
                 >
-                  Explore Platform Details
+                  {solutionContent.platformLink}
                   <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
@@ -127,14 +95,9 @@ export function SolutionSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-24"
         >
-          <h3 className="text-2xl font-semibold text-foreground text-center mb-12">How Digital Tenants Work</h3>
+          <h3 className="text-2xl font-semibold text-foreground text-center mb-12">{solutionContent.howItWorks.title}</h3>
           <div className="grid md:grid-cols-4 gap-8">
-            {[
-              { step: "01", title: "Apply", desc: "Businesses request digital space" },
-              { step: "02", title: "Onboard", desc: "Set up digital storefront" },
-              { step: "03", title: "Operate", desc: "Engage customers digitally" },
-              { step: "04", title: "Revenue", desc: "Pay digital rent monthly" },
-            ].map((item, index) => (
+            {solutionContent.howItWorks.steps.map((item, index) => (
               <div key={item.step} className="relative text-center">
                 <div className="text-5xl font-bold text-primary/20 mb-4">{item.step}</div>
                 <h4 className="text-lg font-semibold text-foreground mb-2">{item.title}</h4>

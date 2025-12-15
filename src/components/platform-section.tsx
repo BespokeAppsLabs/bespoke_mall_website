@@ -2,128 +2,14 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef, useState } from "react"
-import { LayoutDashboard, Users, Smartphone, Monitor, ChevronRight, Check, X } from "lucide-react"
+import { ChevronRight, Check, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-
-const platformModules = [
-    {
-        id: "mall",
-        title: "Mall Management Suite",
-        icon: LayoutDashboard,
-        description: "Complete control center for mall operations, tenant management, and analytics.",
-        features: [
-            "Centralized dashboard for all operations",
-            "Tenant performance tracking",
-            "Revenue analytics and reporting",
-            "Digital advertising management",
-            "Customer engagement tools",
-        ],
-        extendedFeatures: [
-            "Real-time occupancy monitoring",
-            "Automated lease management",
-            "Maintenance request tracking",
-            "Event scheduling and promotion",
-            "Multi-location management",
-            "Custom reporting and exports",
-        ],
-        image: "/images/mall-dashboard.jpg",
-        technicalSpecs: [
-            "Cloud-based SaaS platform",
-            "Role-based access control",
-            "API integrations available",
-            "99.9% uptime SLA",
-        ],
-    },
-    {
-        id: "tenant",
-        title: "Tenant Portal",
-        icon: Users,
-        description: "Empower tenants with tools to manage their digital presence and performance.",
-        features: [
-            "Digital storefront management",
-            "Promotion scheduling",
-            "Customer insights",
-            "Inventory integration",
-            "Sales reporting",
-        ],
-        extendedFeatures: [
-            "Ad campaign creation and tracking",
-            "Performance analytics dashboard",
-            "Customer engagement metrics",
-            "Automated promotional tools",
-            "Multi-channel marketing",
-            "Revenue tracking and forecasting",
-        ],
-        image: "/images/tenant-portal.jpg",
-        technicalSpecs: [
-            "Mobile-responsive design",
-            "Real-time analytics",
-            "Customizable dashboards",
-            "Payment integration ready",
-        ],
-    },
-    {
-        id: "customer",
-        title: "Customer Experience",
-        icon: Smartphone,
-        description: "Seamless mobile and web experience for shoppers to discover, engage, and purchase.",
-        features: [
-            "Interactive mall directory",
-            "Personalized recommendations",
-            "Digital promotions",
-            "Order tracking",
-            "Loyalty integration",
-        ],
-        extendedFeatures: [
-            "Swipe-to-save ad cards",
-            "Digital wallet for deals",
-            "QR code redemption",
-            "Live mall events feed",
-            "Push notifications",
-            "Social sharing integration",
-        ],
-        image: "/images/customer-app.jpg",
-        technicalSpecs: [
-            "React Native mobile app",
-            "Progressive Web App (PWA)",
-            "Offline-first architecture",
-            "Cross-platform compatibility",
-        ],
-    },
-    {
-        id: "kiosk",
-        title: "Digital Signage Network",
-        icon: Monitor,
-        description: "Monetize physical spaces with dynamic digital advertising displays.",
-        features: [
-            "Centralized content management",
-            "Automated ad scheduling",
-            "Real-time monitoring",
-            "Revenue tracking",
-            "Content generation",
-        ],
-        extendedFeatures: [
-            "Store-and-forward technology",
-            "99% uptime guarantee",
-            "Multi-format support (video, image, audio)",
-            "Dynamic content scheduling",
-            "Remote monitoring and management",
-            "Ad performance analytics",
-        ],
-        image: "/images/display_screens/digital-signage-kiosk-in-shopping-mall-modern.jpg",
-        technicalSpecs: [
-            "Orange Pi 5+ hardware",
-            "MPV player engine",
-            "Offline playback capability",
-            "4K video support",
-        ],
-    },
-]
+import { platformContent } from "@/site-content"
 
 export function PlatformSection() {
     const containerRef = useRef<HTMLDivElement>(null)
     const isInView = useInView(containerRef, { once: true, margin: "-100px" })
-    const [activeModule, setActiveModule] = useState(platformModules[0])
+    const [activeModule, setActiveModule] = useState(platformContent.modules[0])
     const [expandedModule, setExpandedModule] = useState<string | null>(null)
 
     return (
@@ -136,13 +22,12 @@ export function PlatformSection() {
                     transition={{ duration: 0.8 }}
                     className="text-center max-w-3xl mx-auto mb-16"
                 >
-                    <span className="text-primary font-medium tracking-widest uppercase text-sm">Platform Overview</span>
+                    <span className="text-primary font-medium tracking-widest uppercase text-sm">{platformContent.sectionHeader.badge}</span>
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-foreground mt-4 mb-6">
-                        Everything You Need in One Platform
+                        {platformContent.sectionHeader.title}
                     </h2>
                     <p className="text-lg text-muted-foreground leading-relaxed">
-                        A comprehensive suite of tools designed for mall management, tenant success, and exceptional customer
-                        experiences.
+                        {platformContent.sectionHeader.description}
                     </p>
                 </motion.div>
 
@@ -153,7 +38,7 @@ export function PlatformSection() {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="flex flex-wrap justify-center gap-3 mb-12"
                 >
-                    {platformModules.map((module) => (
+                    {platformContent.modules.map((module) => (
                         <button
                             key={module.id}
                             onClick={() => setActiveModule(module)}
@@ -241,7 +126,7 @@ export function PlatformSection() {
                             onClick={(e) => e.stopPropagation()}
                         >
                             {(() => {
-                                const module = platformModules.find((m) => m.id === expandedModule)
+                                const module = platformContent.modules.find((m) => m.id === expandedModule)
                                 if (!module) return null
 
                                 return (
@@ -266,7 +151,7 @@ export function PlatformSection() {
                                             >
                                                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
                                                     <module.icon className="w-4 h-4" />
-                                                    Platform Module
+                                                    {platformContent.modal.moduleLabel}
                                                 </div>
                                                 <h2 className="text-5xl lg:text-6xl font-bold text-foreground mb-6">{module.title}</h2>
                                                 <p className="text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -284,7 +169,7 @@ export function PlatformSection() {
                                                     className="col-span-6 md:col-span-2 row-span-2 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 p-6 flex flex-col items-center justify-center text-center"
                                                 >
                                                     <div className="text-5xl font-bold text-foreground mb-2">{module.features.length}</div>
-                                                    <div className="text-sm text-muted-foreground uppercase tracking-wider">Core Features</div>
+                                                    <div className="text-sm text-muted-foreground uppercase tracking-wider">{platformContent.modal.coreFeaturesLabel}</div>
                                                 </motion.div>
 
                                                 <motion.div
@@ -294,7 +179,7 @@ export function PlatformSection() {
                                                     className="col-span-6 md:col-span-2 row-span-2 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 p-6 flex flex-col items-center justify-center text-center"
                                                 >
                                                     <div className="text-5xl font-bold text-foreground mb-2">99%</div>
-                                                    <div className="text-sm text-muted-foreground uppercase tracking-wider">Uptime SLA</div>
+                                                    <div className="text-sm text-muted-foreground uppercase tracking-wider">{platformContent.modal.uptimeLabel}</div>
                                                 </motion.div>
 
                                                 <motion.div
@@ -303,8 +188,8 @@ export function PlatformSection() {
                                                     transition={{ duration: 0.5, delay: 0.2 }}
                                                     className="col-span-6 md:col-span-2 row-span-2 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 p-6 flex flex-col items-center justify-center text-center"
                                                 >
-                                                    <div className="text-5xl font-bold text-foreground mb-2">24/7</div>
-                                                    <div className="text-sm text-muted-foreground uppercase tracking-wider">Support</div>
+                                                    <div className="text-5xl font-bold text-foreground mb-2">{platformContent.modal.supportValue}</div>
+                                                    <div className="text-sm text-muted-foreground uppercase tracking-wider">{platformContent.modal.supportLabel}</div>
                                                 </motion.div>
 
                                                 {/* Core Features - Large Card */}
@@ -316,7 +201,7 @@ export function PlatformSection() {
                                                 >
                                                     <h3 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
                                                         <div className="w-8 h-1 bg-primary rounded-full" />
-                                                        Core Features
+                                                        {platformContent.modal.coreFeaturesLabel}
                                                     </h3>
                                                     <div className="space-y-3 overflow-y-auto max-h-[calc(100%-4rem)]">
                                                         {module.features.map((feature, index) => (
@@ -345,7 +230,7 @@ export function PlatformSection() {
                                                 >
                                                     <h3 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
                                                         <div className="w-8 h-1 bg-primary rounded-full" />
-                                                        Extended Capabilities
+                                                        {platformContent.modal.extendedCapabilitiesLabel}
                                                     </h3>
                                                     <div className="space-y-3 overflow-y-auto max-h-[calc(100%-4rem)]">
                                                         {module.extendedFeatures.map((feature, index) => (
@@ -374,7 +259,7 @@ export function PlatformSection() {
                                                 >
                                                     <h3 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
                                                         <div className="w-8 h-1 bg-primary rounded-full" />
-                                                        Technical Specifications
+                                                        {platformContent.modal.technicalSpecsLabel}
                                                     </h3>
                                                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                                                         {module.technicalSpecs.map((spec, index) => (
@@ -401,7 +286,7 @@ export function PlatformSection() {
                                                 className="mt-12 flex justify-center"
                                             >
                                                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-12 py-7 text-lg rounded-xl shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 group">
-                                                    <span>Request a Quote</span>
+                                                    <span>{platformContent.modal.cta}</span>
                                                     <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                                                 </Button>
                                             </motion.div>

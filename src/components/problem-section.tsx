@@ -2,32 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { AlertTriangle, Building2, TrendingDown, Users } from "lucide-react"
-
-const problems = [
-  {
-    icon: Building2,
-    title: "Physical Space Limits",
-    description:
-      "Every square meter is accounted for. Expansion requires massive capital investment, permits, and years of construction.",
-    stat: "100%",
-    statLabel: "Space Utilization",
-  },
-  {
-    icon: TrendingDown,
-    title: "Revenue Saturation",
-    description: "Traditional rental income has plateaued. Without new space, revenue growth stagnates.",
-    stat: "2-3%",
-    statLabel: "Annual Growth Cap",
-  },
-  {
-    icon: Users,
-    title: "Changing Consumer Behavior",
-    description: "Post-pandemic shoppers expect digital experiences. Physical-only presence is no longer enough.",
-    stat: "73%",
-    statLabel: "Digital-First Shoppers",
-  },
-]
+import { problemContent } from "@/site-content"
 
 export function ProblemSection() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -43,24 +18,27 @@ export function ProblemSection() {
           transition={{ duration: 0.8 }}
           className="max-w-3xl mb-20"
         >
+
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-10 rounded-xl bg-destructive/10 flex items-center justify-center">
-              <AlertTriangle className="w-5 h-5 text-destructive" />
+              {(() => {
+                const HeaderIcon = problemContent.problems[0].icon
+                return <HeaderIcon className="w-5 h-5 text-destructive" />
+              })()}
             </div>
-            <span className="text-destructive font-medium tracking-widest uppercase text-sm">The Challenge</span>
+            <span className="text-destructive font-medium tracking-widest uppercase text-sm">{problemContent.sectionHeader.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-foreground mb-6">
-            Malls Are Running Out of Room to Grow
+            {problemContent.sectionHeader.title}
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            The traditional retail model has hit its ceiling. Physical expansion is expensive, time-consuming, and
-            increasingly risky in a shifting market.
+            {problemContent.sectionHeader.description}
           </p>
         </motion.div>
 
         {/* Problem Cards */}
         <div className="grid lg:grid-cols-3 gap-8">
-          {problems.map((problem, index) => (
+          {problemContent.problems.map((problem, index) => (
             <motion.div
               key={problem.title}
               initial={{ opacity: 0, y: 40 }}
@@ -96,8 +74,7 @@ export function ProblemSection() {
           className="mt-20 text-center"
         >
           <blockquote className="text-2xl lg:text-3xl font-serif text-foreground italic max-w-4xl mx-auto">
-            "The question isn't whether malls need to evolve — it's how quickly they can adapt before becoming
-            obsolete."
+            {problemContent.quote}
           </blockquote>
         </motion.div>
       </div>

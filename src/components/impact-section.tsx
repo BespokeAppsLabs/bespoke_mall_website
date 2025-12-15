@@ -2,41 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { TrendingUp, DollarSign, Users, Building, Shield, Package, Target } from "lucide-react"
-
-const impactMetrics = [
-  {
-    icon: Shield,
-    value: "99%",
-    label: "Uptime Guarantee",
-    description: "Store-and-forward technology ensures ads play even offline",
-  },
-  {
-    icon: TrendingUp,
-    value: "40%+",
-    label: "Revenue Increase",
-    description: "Projected growth from digital tenant revenue",
-  },
-  {
-    icon: Users,
-    value: "∞",
-    label: "Tenant Capacity",
-    description: "Unlimited digital tenants without space constraints",
-  },
-  {
-    icon: Package,
-    value: "1",
-    label: "Single Vendor",
-    description: "Complete solution: software, hardware, ads & maintenance",
-  },
-]
-
-const revenueStreams = [
-  { name: "Digital Advertising", description: "App banners, kiosk slots, video ads", icon: Target },
-  { name: "Marketplace Fees", description: "Commission on platform sales", icon: DollarSign },
-  { name: "Content Services", description: "Professional ad design and content creation fees", icon: Building },
-  { name: "External Listings", description: "Non-mall business listings", icon: Users },
-]
+import { impactContent } from "@/site-content"
 
 export function ImpactSection() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -55,18 +21,18 @@ export function ImpactSection() {
           transition={{ duration: 0.8 }}
           className="text-center max-w-3xl mx-auto mb-20"
         >
-          <span className="text-primary font-medium tracking-widest uppercase text-sm">Business Impact</span>
+          <span className="text-primary font-medium tracking-widest uppercase text-sm">{impactContent.sectionHeader.badge}</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-foreground mt-4 mb-6">
-            Numbers That Drive Decisions
+            {impactContent.sectionHeader.title}
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Clear investment, measurable returns, and a sustainable growth model that scales with your ambitions.
+            {impactContent.sectionHeader.description}
           </p>
         </motion.div>
 
         {/* Metrics Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-          {impactMetrics.map((metric, index) => (
+          {impactContent.metrics.map((metric, index) => (
             <motion.div
               key={metric.label}
               initial={{ opacity: 0, y: 30 }}
@@ -91,9 +57,9 @@ export function ImpactSection() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="p-8 lg:p-12 rounded-3xl bg-card border border-border"
         >
-          <h3 className="text-2xl font-semibold text-foreground text-center mb-10">Revenue Streams Unlocked</h3>
+          <h3 className="text-2xl font-semibold text-foreground text-center mb-10">{impactContent.revenueStreams.title}</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {revenueStreams.map((stream, index) => (
+            {impactContent.revenueStreams.items.map((stream, index) => (
               <motion.div
                 key={stream.name}
                 initial={{ opacity: 0, scale: 0.95 }}

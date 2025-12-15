@@ -4,15 +4,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Building2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-
-const navLinks = [
-  { name: "Vision", href: "#vision" },
-  { name: "Problem", href: "#problem" },
-  { name: "Solution", href: "#solution" },
-  { name: "Platform", href: "#platform" },
-  { name: "Impact", href: "#impact" },
-  { name: "Roadmap", href: "#roadmap" },
-]
+import { navContent } from "@/site-content"
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -32,9 +24,8 @@ export function Navigation() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled ? "bg-background/80 backdrop-blur-xl border-b border-border/50" : "bg-transparent"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? "bg-background/80 backdrop-blur-xl border-b border-border/50" : "bg-transparent"
+          }`}
       >
         <nav className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
@@ -51,7 +42,7 @@ export function Navigation() {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-1">
-              {navLinks.map((link, index) => (
+              {navContent.links.map((link, index) => (
                 <motion.a
                   key={link.name}
                   href={link.href}
@@ -69,7 +60,7 @@ export function Navigation() {
             {/* CTA Button */}
             <div className="hidden lg:flex items-center gap-4">
               <Button variant="default" className="bg-primary hover:bg-primary/90 text-primary-foreground px-6">
-                Schedule Meeting
+                {navContent.cta}
               </Button>
             </div>
 
@@ -92,7 +83,7 @@ export function Navigation() {
           >
             <div className="absolute inset-0 bg-background/95 backdrop-blur-xl pt-24">
               <nav className="flex flex-col items-center gap-6 p-8">
-                {navLinks.map((link, index) => (
+                {navContent.links.map((link, index) => (
                   <motion.a
                     key={link.name}
                     href={link.href}
@@ -109,7 +100,7 @@ export function Navigation() {
                   variant="default"
                   className="mt-8 bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg"
                 >
-                  Schedule Meeting
+                  {navContent.cta}
                 </Button>
               </nav>
             </div>

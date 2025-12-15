@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
 import { ArrowRight, Play, Building, Smartphone, TrendingUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { heroContent } from "@/site-content"
 
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -63,7 +64,7 @@ export function HeroSection() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8"
             >
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-sm text-primary font-medium">Digital Transformation Platform</span>
+              <span className="text-sm text-primary font-medium">{heroContent.badge}</span>
             </motion.div>
 
             {/* Main Headline */}
@@ -73,7 +74,7 @@ export function HeroSection() {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="text-4xl sm:text-5xl lg:text-7xl font-serif font-semibold leading-[1.1] text-foreground mb-6 text-balance"
             >
-              Expanding the Mall <span className="text-primary">Without Building</span> More Walls
+              {heroContent.title}<span className="text-primary">{heroContent.titleHighlight}</span>{heroContent.titleSuffix}
             </motion.h1>
 
             {/* Subheadline */}
@@ -83,8 +84,7 @@ export function HeroSection() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-lg lg:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed"
             >
-              Unlock new revenue streams through digital tenants. Transform your physical space into a hybrid ecosystem
-              that grows without construction.
+              {heroContent.description}
             </motion.p>
 
             {/* CTA Buttons */}
@@ -98,7 +98,7 @@ export function HeroSection() {
                 size="lg"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-base group"
               >
-                Explore the Proposal
+                {heroContent.primaryCta}
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button
@@ -107,7 +107,7 @@ export function HeroSection() {
                 className="border-border hover:bg-secondary px-8 py-6 text-base group bg-transparent"
               >
                 <Play className="mr-2 w-4 h-4" />
-                Watch Overview
+                {heroContent.secondaryCta}
               </Button>
             </motion.div>
 
@@ -118,11 +118,7 @@ export function HeroSection() {
               transition={{ duration: 1, delay: 0.5 }}
               className="grid grid-cols-3 gap-8 mt-16 pt-8 border-t border-border/50"
             >
-              {[
-                { value: "40%", label: "Revenue Increase" },
-                { value: "∞", label: "Digital Expansion" },
-                { value: "0", label: "Bricks Required" },
-              ].map((stat, index) => (
+              {heroContent.stats.map((stat, index) => (
                 <div key={index} className="text-center lg:text-left">
                   <div className="text-2xl lg:text-3xl font-semibold text-foreground">{stat.value}</div>
                   <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
@@ -211,7 +207,7 @@ export function HeroSection() {
           transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
           className="flex flex-col items-center gap-2 text-muted-foreground"
         >
-          <span className="text-xs tracking-widest uppercase">Scroll to explore</span>
+          <span className="text-xs tracking-widest uppercase">{heroContent.scrollIndicator}</span>
           <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2">
             <motion.div
               animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}

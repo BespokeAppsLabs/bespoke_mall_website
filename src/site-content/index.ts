@@ -1,0 +1,11 @@
+
+export * from "./hero"
+export * from "./vision"
+export * from "./problem"
+export * from "./solution"
+export * from "./impact"
+export * from "./platform"
+export * from "./roadmap"
+export * from "./cta"
+export * from "./nav"
+export * from "./footer"
