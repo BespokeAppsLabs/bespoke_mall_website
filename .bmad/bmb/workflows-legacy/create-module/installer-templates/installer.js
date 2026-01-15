@@ -80,7 +80,12 @@ async function setupConfigurations(config) {
   // - Initialize settings
 
   // Placeholder configuration
-  const configPath = path.join(config.project_root, 'bmad', config.module_code, 'config.json');
+  const configPath = path.join(
+    config.project_root,
+    'bmad',
+    config.module_code,
+    'config.json',
+  );
 
   // Example of module config that would be created
   // const moduleConfig = {
@@ -192,7 +197,11 @@ async function generateSamples(config) {
   // TODO: Create sample files, data, configurations
   // This helps users understand how to use the module
 
-  const samplesPath = path.join(config.project_root, 'examples', config.module_code);
+  const samplesPath = path.join(
+    config.project_root,
+    'examples',
+    config.module_code,
+  );
 
   console.log(`   - Would create samples at: ${samplesPath}`);
   console.log('   ✓ Samples generated');

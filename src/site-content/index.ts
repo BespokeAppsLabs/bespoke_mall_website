@@ -1,6 +1,5 @@
-
-export * from "./landing/hero"
-export * from "./investors"
-export * from "./tenants"
-export * from "./shoppers"
-export * from "./shared"
+export * from './investors';
+export * from './landing/hero';
+export * from './shared';
+export * from './shoppers';
+export * from './tenants';
